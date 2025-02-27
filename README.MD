@@ -4,6 +4,8 @@ A lightweight dashboard for tracking children's development milestones and achie
 
 Use at: https://auders0n.github.io/site2timeline/
 
+Import an example file from https://github.com/auders0n/site2timeline/blob/main/test/timeline_data.json
+
 ## Features
 
 - Timeline view of kids' development
@@ -17,15 +19,16 @@ Use at: https://auders0n.github.io/site2timeline/
 
 ```
 ├── css/
-│   └── styles.css          # Global styles
+│   └── styles.css           # Global styles
 ├── js/
-│   ├── data.js            # Data management layer
-│   ├── timeline.js        # Timeline view logic
-│   ├── settings.js        # Settings page logic
-│   ├── achievements.js    # Achievements page logic
-│   └── app.js            # Main application logic
-├── __tests__/            # Test files
-└── index.html           # Main HTML file
+│   ├── data.js              # Data management layer
+│   ├── timeline.js          # Timeline view logic
+│   ├── settings.js          # Settings page logic
+│   ├── achievements.js      # Achievements page logic
+│   └── app.js               # Main application logic
+├──test/
+│   └── timeline_data.json   # Example file
+└── index.html               # Main HTML file
 ```
 
 ## Data Storage
