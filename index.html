@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Development Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <button id="timelineBtn" class="active">Timeline</button>
+            <button id="settingsBtn">Settings</button>
+            <button id="achievementsBtn">Achievements</button>
+        </div>
+        <button id="printTimeline" class="print-button" style="display: none;">Print Timeline</button>
+    </nav>
+
+    <main>
+        <div id="timeline-view" class="view active">
+            <div class="year-selector">
+                <select id="yearSelect"></select>
+                <div class="selected-year"></div>
+            </div>
+            <div id="timeline-container"></div>
+        </div>
+
+        <div id="settings-view" class="view">
+            <h2>Kids Settings</h2>
+            <div id="kids-form">
+                <form id="kid-form">
+                    <div class="form-group">
+                        <input type="hidden" id="kidId" value="">
+                        <label for="kidName">Name</label>
+                        <input type="text" id="kidName" required placeholder="Enter kid's name">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">Birth Date</label>
+                        <input type="date" id="birthDate" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="primary">Save</button>
+                        <button type="button" id="cancelEdit" class="secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div id="kids-list"></div>
+            <div class="data-management">
+                <h3>Data Management</h3>
+                <div class="form-actions">
+                    <button type="button" id="exportData">Export Data</button>
+                    <button type="button" id="importData" class="secondary">Import Data</button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                </div>
+            </div>
+            <div class="language-settings">
+                <h3>Language Settings</h3>
+                <div class="form-group">
+                    <label for="languageSelect">Language</label>
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </div>
+            </div>
+            <div class="theme-settings">
+                <h3>Theme Settings</h3>
+                <div class="form-group">
+                    <label for="themeSelect">Theme</label>
+                    <select id="themeSelect">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="forest">Forest</option>
+                        <option value="sunset">Sunset</option>
+                        <option value="pink">Pink</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="achievements-view" class="view">
+            <h2>Achievements</h2>
+            <div id="achievements-form">
+                <form id="achievement-form">
+                    <div class="form-group">
+                        <input type="hidden" id="achievementId" value="">
+                        <label for="kidSelect">Kid</label>
+                        <select id="kidSelect" required>
+                            <option value="">Select a kid</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="achievementDate">Date</label>
+                        <input type="date" id="achievementDate" required>
+                        <div class="date-display-format">
+                            <label>Display Format:</label>
+                            <div class="radio-group">
+                                <input type="radio" id="showFullDate" name="dateFormat" value="full" checked>
+                                <label for="showFullDate">Show Full Date</label>
+                                <input type="radio" id="showMonthOnly" name="dateFormat" value="month">
+                                <label for="showMonthOnly">Show Month Only</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" id="description" required placeholder="Describe the achievement">
+                    </div>
+                    <div class="form-group">
+                        <label for="iconSelect">Icon</label>
+                        <select id="iconSelect" required>
+                            <option value="star">Star (Important milestone)</option>
+                            <option value="motricity">Motricity (Physical development)</option>
+                            <option value="language">Language (Speaking/Reading)</option>
+                            <option value="food">Food (Eating habits)</option>
+                            <option value="sport">Sport (Physical activities)</option>
+                            <option value="music">Music (Musical activities)</option>
+                            <option value="academic">Academic (Learning)</option>
+                            <option value="health">Health (Medical/Wellness)</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="primary">Save Achievement</button>
+                        <button type="button" id="cancelAchievement" class="secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div id="achievements-list"></div>
+        </div>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html> 
