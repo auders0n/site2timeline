@@ -219,12 +219,26 @@ class DataManager {
                 throw new Error('Invalid data format');
             }
 
-            // Validate each kid and achievement
-            data.kids.forEach(kid => this.validateKid(kid));
-            data.achievements.forEach(achievement => this.validateAchievement(achievement));
+            // Clear existing data
+            localStorage.removeItem(this.STORAGE_KEYS.KIDS);
+            localStorage.removeItem(this.STORAGE_KEYS.ACHIEVEMENTS);
 
-            // If all validation passes, save the data
+            // Validate each kid first
+            data.kids.forEach(kid => this.validateKid(kid));
+
+            // Save kids data
             localStorage.setItem(this.STORAGE_KEYS.KIDS, JSON.stringify(data.kids));
+
+            // Validate each achievement
+            data.achievements.forEach(achievement => {
+                // Ensure the kidId exists in the kids array
+                if (!data.kids.find(kid => kid.id === achievement.kidId)) {
+                    throw new Error('Valid kid ID is required');
+                }
+                this.validateAchievement(achievement);
+            });
+
+            // Save achievements data
             localStorage.setItem(this.STORAGE_KEYS.ACHIEVEMENTS, JSON.stringify(data.achievements));
             
             return true;
