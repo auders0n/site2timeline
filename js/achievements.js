@@ -50,7 +50,8 @@ class Achievements {
             date: document.getElementById('achievementDate').value,
             description: document.getElementById('description').value,
             icon: document.getElementById('iconSelect').value,
-            dateFormat: document.querySelector('input[name="dateFormat"]:checked').value
+            dateFormat: document.querySelector('input[name="dateFormat"]:checked').value,
+            textPosition: document.getElementById('textPosition').value
         };
 
         if (achievementId) {
@@ -69,6 +70,7 @@ class Achievements {
         document.getElementById('achievementDate').value = '';
         document.getElementById('description').value = '';
         document.getElementById('iconSelect').value = 'star';
+        document.getElementById('textPosition').value = 'right';
         document.getElementById('showFullDate').checked = true;
         this.form.querySelector('button[type="submit"]').textContent = 'Save Achievement';
     }
@@ -86,6 +88,9 @@ class Achievements {
         // Set date format radio
         const formatRadio = document.getElementById(achievement.dateFormat === 'month' ? 'showMonthOnly' : 'showFullDate');
         if (formatRadio) formatRadio.checked = true;
+        
+        // Set text position (default to 'right' if not set)
+        document.getElementById('textPosition').value = achievement.textPosition || 'right';
         
         this.form.querySelector('button[type="submit"]').textContent = 'Update Achievement';
 
