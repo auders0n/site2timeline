@@ -213,7 +213,8 @@ class Timeline {
 
                         // Create text element
                         const text = document.createElement('div');
-                        text.className = `achievement-text ${index % 2 === 0 ? 'top' : 'bottom'}`;
+                        const textPosition = achievement.textPosition || 'right';
+                        text.className = `achievement-text ${index % 2 === 0 ? 'top' : 'bottom'} ${textPosition === 'left' ? 'left' : ''}`;
                         text.dataset.format = achievement.dateFormat || 'full';
                         text.innerHTML = `
                             <div class="achievement-date">${this.formatDate(achievementDate, achievement.dateFormat)}</div>
