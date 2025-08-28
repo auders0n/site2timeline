@@ -215,12 +215,24 @@ main {
     line-height: 1;
 }
 
+.achievement-text.left {
+    text-align: right;
+    padding-left: 0;
+    padding-right: 6px;
+    right: 0;
+    transform: translateX(-0px);
+}
+
 .achievement-text::before {
     content: '';
     width: 2px;
     background-color: var(--primary-color);
     position: absolute;
     height: 100%;
+}
+
+.achievement-text.left::before {
+    right: 0;
 }
 
 .achievement-text.top {
@@ -231,6 +243,11 @@ main {
     left: 0;
     bottom: -5px;
     height: calc(100% + 5px);
+}
+
+.achievement-text.top.left::before {
+    left: auto;
+    right: 0;
 }
 
 .achievement-text.bottom {
@@ -245,6 +262,11 @@ main {
     left: 0;
     top: -5px;
     height: calc(100% + 5px);
+}
+
+.achievement-text.bottom.left::before {
+    left: auto;
+    right: 0;
 }
 
 .achievement-date {
