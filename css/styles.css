@@ -570,37 +570,231 @@ button.secondary {
 }
 
 @media print {
+    /* Hide navigation and non-active views */
     nav, .view:not(.active), .print-button {
-        display: none;
+        display: none !important;
     }
 
+    /* Reset body margins and padding for print */
     body {
         margin: 0;
         padding: 0;
+        font-size: 12pt;
+        line-height: 1.4;
     }
 
+    /* Timeline container adjustments */
     #timeline-container {
         margin: 0;
         padding: 0;
+        max-width: none;
+        width: 100%;
     }
 
-    .timeline-phase {
-        background: var(--secondary-color) !important;
-        border: 1px solid var(--border-color);
-        display: flex !important;
+    /* Timeline header - ensure months are visible */
+    .timeline-header {
+        display: grid !important;
+        grid-template-columns: repeat(12, 1fr) !important;
+        margin-bottom: 1rem;
+        padding: 0 1rem;
+        border-bottom: 1px solid #000;
+    }
+
+    .timeline-month {
+        text-align: center;
+        padding: 0.25rem;
+        font-weight: bold;
+        font-size: 10pt;
+    }
+
+    /* Timeline kid sections */
+    .timeline-kid {
+        margin-bottom: 5.625rem;
+        page-break-inside: avoid;
     }
 
     .kid-name {
-        margin-left: 0;
-        width: auto;
-        text-align: left;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        margin-left: -100px;
+        width: 90px;
+        text-align: right;
+        padding-right: 10px;
+        font-weight: bold;
     }
 
+    /* Timeline row styling */
+    .timeline-row {
+        position: relative;
+        height: 60px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    /* Timeline phases - ensure they're visible */
+    .timeline-phase {
+        position: absolute !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        background: var(--secondary-color) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: var(--primary-color) !important;
+        font-size: 1.2rem !important;
+    }
+
+    .timeline-phase.phase-1 {
+        left: 0 !important;
+        clip-path: polygon(0% 0%, calc(100% - 10px) 0%, 100% 50%, calc(100% - 10px) 100%, 0% 100%) !important;
+    }
+
+    .timeline-phase.phase-2 {
+        background: rgba(74, 144, 226, 0.1) !important;
+    }
+
+    /* Achievement markers - ensure they're visible */
+    .achievement-container {
+        position: absolute !important;
+        width: 0 !important;
+        height: 100% !important;
+    }
+
+    .achievement-marker {
+        position: absolute !important;
+        width: 25px !important;
+        height: 25px !important;
+        background: white !important;
+        border: 2px solid var(--primary-color) !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 1 !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .achievement-marker i {
+        font-size: 15px !important;
+        color: var(--primary-color) !important;
+    }
+
+    /* Achievement text styling */
+    .achievement-text {
+        position: absolute !important;
+        text-align: left !important;
+        color: var(--primary-color) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        min-width: 150px !important;
+        padding-left: 6px !important;
+        line-height: 1 !important;
+    }
+
+    .achievement-text.left {
+        text-align: right !important;
+        padding-left: 0 !important;
+        padding-right: 6px !important;
+        right: 0 !important;
+        transform: translateX(-0px) !important;
+    }
+
+    /* Vertical lines for achievement text */
     .achievement-text::before {
-        display: block;
+        content: '' !important;
+        width: 2px !important;
+        background-color: var(--primary-color) !important;
+        position: absolute !important;
+        height: 100% !important;
+        display: block !important;
+        z-index: 1 !important;
     }
 
-    .achievement-card {
+    .achievement-text.left::before {
+        right: 0 !important;
+    }
+
+    .achievement-text.top {
+        bottom: calc(100% + 5px) !important;
+    }
+
+    .achievement-text.top::before {
+        left: 0 !important;
+        bottom: -5px !important;
+        height: calc(100% + 5px) !important;
+    }
+
+    .achievement-text.top.left::before {
+        left: auto !important;
+        right: 0 !important;
+    }
+
+    .achievement-text.bottom {
+        top: calc(100% + 5px) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-end !important;
+        height: 100% !important;
+    }
+
+    .achievement-text.bottom::before {
+        left: 0 !important;
+        top: -5px !important;
+        height: calc(100% + 5px) !important;
+    }
+
+    .achievement-text.bottom.left::before {
+        left: auto !important;
+        right: 0 !important;
+    }
+
+    .achievement-date {
+        font-weight: bold !important;
+        margin-bottom: 0 !important;
+        font-size: 0.9em !important;
+        line-height: 1 !important;
+    }
+
+    .achievement-description {
+        font-size: 0.9em !important;
+        line-height: 1 !important;
+    }
+
+    /* Phase age labels */
+    .phase-age {
+        position: absolute !important;
+        font-weight: bold !important;
+        z-index: 2 !important;
+        background-color: white !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+        border: 1px solid var(--primary-color) !important;
+        color: var(--primary-color) !important;
+        font-size: 0.9em !important;
+        white-space: nowrap !important;
+    }
+
+    /* Year selector - hide in print */
+    .year-selector {
+        display: none !important;
+    }
+
+    /* Ensure all timeline elements are visible */
+    .timeline-kid, .timeline-row, .timeline-phase, .achievement-container, .achievement-marker, .achievement-text {
         display: block !important;
+        visibility: visible !important;
+    }
+
+    /* Page breaks */
+    .timeline-kid {
+        page-break-inside: avoid;
+    }
+
+    /* Print-specific color adjustments */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 } 
